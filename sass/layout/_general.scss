@@ -3,6 +3,44 @@
 @use "./mixins" as layout;
 
 /** @section General layout */
+html {
+  &::before, &::after {
+    background: url("images/ellipses.svg") no-repeat;
+    position: absolute;
+    z-index: -1;
+    content: ""
+  }
+  &::before {
+    width: var(--outer-background-1-size);
+    aspect-ratio: 1;
+    inset-block-end: var(--outer-background-1-block-inset);
+    inset-inline-end: var(--outer-background-1-inline-inset);
+  }
+  &::after {
+    width: var(--outer-background-2-inline-size);
+    height: var(--outer-background-2-block-size);
+    inset-block-end: 0;
+    inset-inline-end: 0;
+  }
+  &[data-mode-choice="dark"] {
+    &::before, &::after {
+      background-position-y: calc(var(--outer-background-1-size) * -1);
+    }
+  }
+  @include css-media-queries($from-breakpoint: bigger-icons) {
+    &::before {
+      inset-block-start: var(--outer-background-1-block-inset);
+      inset-block-end: initial;
+      inset-inline-start: var(--outer-background-1-inline-inset);
+      inset-inline-end: initial;
+    }
+  }
+  @include css-media-queries($below-breakpoint: multicol-layout) {
+    &::after {
+      content: normal;
+    }
+  }
+}
 body {
   margin: var(--outer-block-margin-start) var(--outer-inline-margin) var(--outer-block-margin-end);
   &[data-context="start"] {

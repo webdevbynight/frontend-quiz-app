@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+/** @section Mode choice */
+:root {
+  color-scheme: light dark;
+}
+html {
+  &[data-mode-choice="dark"] {
+    color-scheme: dark;
+  }
+}

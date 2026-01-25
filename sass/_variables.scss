@@ -15,6 +15,11 @@
   --outer-inline-size: calc(#{$outer-inline-base} / 1440 * 100vi);
   --outer-max-inline-size: #{px2rem($outer-inline-base)};
   --outer-start-block-margin-start: #{px2rem(26)};
+  --outer-background-1-size: 977px;
+  --outer-background-2-block-size: 608px;
+  --outer-background-2-inline-size: 540px;
+  --outer-background-1-block-inset: 0;
+  --outer-background-1-inline-inset: 0;
   --grid-first-column-size: calc(465 / #{$outer-inline-base} * 100%);
   --grid-gap: #{px2rem(128)};
   --header-block-margin-end: #{px2rem(48)};
@@ -28,6 +33,8 @@
     --outer-block-margin-end: #{px2rem(52)};
     --outer-inline-margin: #{px2rem(64)};
     --outer-start-block-margin-start: #{px2rem(54)};
+    --outer-background-1-block-inset: -446px;
+    --outer-background-1-inline-inset: -539px;
     --header-block-margin-end: #{px2rem(49)};
     --header-start-block-margin-end: #{px2rem(64)};
     --mode-choice-start-block-margin-end: #{px2rem(31)};
@@ -37,6 +44,8 @@
     --outer-block-margin-end: #{px2rem(148)};
     --outer-inline-margin: auto;
     --outer-start-block-margin-start: #{px2rem(224)};
+    --outer-background-1-block-inset: -413px;
+    --outer-background-1-inline-inset: -539px;
     --header-block-margin-end: #{px2rem(85)};
     --header-start-gap: #{px2rem(48)};
   }

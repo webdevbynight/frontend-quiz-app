@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="977" height="1954" viewBox="0 0 977 1954">
+  <style type="text/css">
+    .ellipse {
+      stroke-width: 144;
+      fill: none;
+    }
+    .light {
+      stroke: #edf1f9;
+    }
+    .dark {
+      stroke: #2d3949;
+    }
+  </style>
+  <defs>
+    <circle id="ellipse" r="416.5" cx="488.5" cy="488.5"/>
+  </defs>
+  <use class="ellipse light" xlink:href="#ellipse"/>
+  <use class="ellipse dark" xlink:href="#ellipse" transform="translate(0,977)"/>
+</svg>
