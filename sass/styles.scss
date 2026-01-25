@@ -20,6 +20,7 @@
 @use "./base/print";
 @use "./typo/font-face";
 @use "./typo/typo";
+@use "./common/utils";
 @use "./common/mode-choice";
 @use "./layout/general";
 @use "./layout/quiz";

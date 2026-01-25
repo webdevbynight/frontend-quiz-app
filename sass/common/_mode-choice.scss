@@ -1,4 +1,5 @@
 @charset "utf-8";
+@use "../base/mixins" as *;
 
 /** @section Mode choice */
 :root {
@@ -12,4 +13,75 @@ html {
 }
 body {
   color: light-dark(var(--primary-light), var(--primary-dark));
+}
+#header {
+  form {
+    display: inline-flex;
+    gap: var(--mode-choice-gap);
+    justify-content: flex-end;
+    align-items: center;
+    &::before, &::after {
+      background: url("images/mode-choice.svg") no-repeat;
+      display: inline-block;
+      width: var(--mode-choice-weather-icon-size);
+      height: var(--mode-choice-weather-icon-size);
+      content: "";
+    }
+    &::before {
+      [data-mode-choice="dark"] & {
+        background-position-y: -16px;
+      }
+    }
+    &::after {
+      background-position-y: -32px;
+      [data-mode-choice="dark"] & {
+        background-position-y: -48px;
+      }
+    }
+  }
+  input[type="checkbox"] {
+    @include css-visually-hidden;
+    &:checked + label {
+      &::before {
+        transform: translate(100%, var(--mode-choice-button-inside-translate-y));
+      }
+    }
+  }
+  label {
+    background: #a729f5;
+    display: block;
+    inline-size: var(--mode-choice-button-inline-size);
+    min-block-size: var(--mode-choice-button-block-size);
+    border-radius: var(--mode-choice-button-border-radius);
+    position: relative;
+    cursor: pointer;
+    &::before {
+      background: white;
+      width: var(--mode-choice-button-inside-size);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: absolute;
+      inset-block-start: var(--mode-choice-button-inside-block-inset);
+      inset-inline-start: var(--mode-choice-button-inside-inline-inset);
+      transform: translate(0%, var(--mode-choice-button-inside-translate-y));
+      transition: transform 250ms ease-in;
+      content: "";
+    }
+  }
+  @include css-media-queries($from-breakpoint: bigger-icons) {
+    form {
+      &::before {
+        background-position-y: -64px;
+        [data-mode-choice="dark"] & {
+          background-position-y: -88px;
+        }
+      }
+      &::after {
+        background-position-y: -112px;
+        [data-mode-choice="dark"] & {
+          background-position-y: -136px;
+        }
+      }
+    }
+  }
 }
