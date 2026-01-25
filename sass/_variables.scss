@@ -11,9 +11,11 @@
   --outer-block-margin-start: #{px2rem(16)};
   --outer-block-margin-end: #{px2rem(32)};
   --outer-inline-margin: #{px2rem(24)};
-  --outer-inline-size: calc(1157 / 1440 * 100vi);
+  $outer-inline-base: 1157;
+  --outer-inline-size: calc(#{$outer-inline-base} / 1440 * 100vi);
+  --outer-max-inline-size: #{px2rem($outer-inline-base)};
   --outer-start-block-margin-start: #{px2rem(26)};
-  --grid-first-column-size: calc(465 / 1440 * 100vi);
+  --grid-first-column-size: calc(465 / #{$outer-inline-base} * 100%);
   --grid-gap: #{px2rem(128)};
   --header-block-margin-end: #{px2rem(48)};
   --header-start-block-margin-end: #{px2rem(40)};

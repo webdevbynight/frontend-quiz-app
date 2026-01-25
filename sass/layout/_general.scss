@@ -9,7 +9,7 @@ body {
     margin-block-start: var(--outer-start-block-margin-start);
   }
   @include css-media-queries($from-breakpoint: multicol-layout) {
-    inline-size: var(--outer-inline-size);
+    inline-size: min(var(--outer-inline-size), var(--outer-max-inline-size));
     &[data-context="start"] {
       @include layout.common-grid;
       position: relative;
