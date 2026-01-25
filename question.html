@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="google" content="notranslate">
+    <link rel="icon" href="./favicon-32x32.png" type="image/png">
+    <link rel="stylesheet" href="./css/styles.css" type="text/css" media="screen, print">
+    <title>Question 6 of 10 — Accessibility — Frontend Quiz</title>
+    <meta name="description" content="Frontend quiz app">
+
+    <!-- Begin canonical URL -->
+    <link rel="canonical" href="https://webdevbynight.github.io/frontend-quiz-app/">
+    <!-- End canonical URL -->
+
+  </head>
+
+  <body data-context="question">
+
+    <!-- Begin header -->
+    <header id="header">
+      <h1><img src="./images/icon-accessibility.svg" alt="" width="40" height="40"> Accessibility</h1>
+      <form>
+        <p>
+          <input id="mode-choice" name="mode-choice" type="checkbox">
+          <label for="mode-choice">
+            <span class="sr-only">Switch to dark mode</span>
+          </label>
+        </p>
+      </form>
+    </header>
+    <!-- End header -->
+
+    <!-- Begin main content -->
+    <main id="question">
+      <header>
+        <h2><span class="question-number">Question 6 of 10</span> Which of these colour contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?</h2>
+        <p><progress value="6" max="10" aria-label="Question progress"></progress></p>
+      </header>
+      <form method="post">
+        <ol class="answers">
+          <li><input id="accessibility-question-6-answer-1" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-1">4.5:1</label></li>
+          <li><input id="accessibility-question-6-answer-2" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-2">3:1</label></li>
+          <li><input id="accessibility-question-6-answer-3" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-3">2.5:1</label></li>
+          <li><input id="accessibility-question-6-answer-4" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-4">5:1</label></li>
+        </ol>
+        <p>
+          <input name="question-context" type="hidden" value="accessibility-question-6">
+          <input name="question-answered" type="hidden" value="false">
+          <input type="submit" value="Submit Answer">
+        </p>
+      </form>
+    </main>
+    <!-- End main content -->
+
+    <!-- Begin scripts -->
+    <script src="./js/index.js" type="module"></script>
+    <!-- End scripts -->
+
+  </body>
+</html>
