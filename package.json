@@ -6,7 +6,7 @@
     "biome:lint": "biome lint --write .",
     "build": "sass --no-source-map sass:css --style=compressed && tsc --sourceMap false && node tools/build.js",
     "dev": "pnpm \"/dev:/\"",
-    "dev:browser-sync": "browser-sync start --server --port 4000 --files \"*.html\" \"css/*.css\" \"sass/**/*.scss\" \"ts/*.ts\" \"css/images/*\" \"images/**/*\" --open \"external\" --browser \"firefox\" \"google chrome\" \"safari\"",
+    "dev:browser-sync": "browser-sync start --server --port 4000 --files \"*.html\" \"css/*.css\" \"sass/**/*.scss\" \"ts/**/*.ts\" \"css/images/*\" \"images/**/*\" --open \"external\" --browser \"firefox\" \"google chrome\" \"safari\"",
     "dev:sass": "sass --watch sass:css --style=compressed",
     "dev:tsc": "tsc --watch --preserveWatchOutput",
     "install-web-fonts": "node tools/install-web-fonts.js",
