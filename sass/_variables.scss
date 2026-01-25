@@ -7,6 +7,14 @@
   // Fonts
   --font: "Rubik";
 
+  // Colours
+  --primary-light: #313e51;
+  --primary-dark: white;
+  --secondary-light: #62c7f;
+  --secondary-dark: #abc1e1;
+  --primary-background-light: #f4f6fa;
+  --primary-background-dark: #313e51;
+
   // Sizes, gaps, margins, paddings, borders, transforms
   --outer-block-margin-start: #{px2rem(16)};
   --outer-block-margin-end: #{px2rem(32)};

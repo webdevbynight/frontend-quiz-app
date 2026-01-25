@@ -5,7 +5,11 @@
   color-scheme: light dark;
 }
 html {
+  background-color: light-dark(var(--primary-background-light), var(--primary-background-dark));
   &[data-mode-choice="dark"] {
     color-scheme: dark;
   }
+}
+body {
+  color: light-dark(var(--primary-light), var(--primary-dark));
 }
