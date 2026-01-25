@@ -11,7 +11,8 @@
 
 @use "./base/mixins" with (
   $media-queries-breakpoints: (
-    // Add custom breakpoints here if default ones do not fit the project
+    bigger-icons: 500,
+    multicol-layout: 1024
   )
 );
 @use "./variables";
@@ -19,3 +20,6 @@
 @use "./base/print";
 @use "./typo/font-face";
 @use "./typo/typo";
+@use "./layout/general";
+@use "./layout/quiz";
+@use "./header/header";

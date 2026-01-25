@@ -1,0 +1,30 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+
+/** @section Header */
+#header {
+  display: flex;
+  margin-block-end: var(--header-block-margin-end);
+  :not([data-context="start"]) > & {
+    justify-content: space-between;
+  }
+  [data-context="start"] & {
+    flex-direction: column;
+    gap: var(--header-start-gap);
+    margin-block-end: var(--header-start-block-margin-end);
+    form {
+      order: -1;
+      margin-block-end: var(--mode-choice-start-block-margin-end);
+    }
+  }
+  @include css-media-queries($from-breakpoint: multicol-layout) {
+    [data-context="start"] & {
+      margin-block-end: initial;
+      form {
+        position: absolute;
+        inset-block-start: var(--header-start-block-inset-start);
+        inset-inline-end: var(--header-start-inline-inset-end);
+      }
+    }
+  }
+}

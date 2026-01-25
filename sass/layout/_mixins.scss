@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+// Layout mixins
+@mixin common-grid {
+  display: grid;
+  grid-template-columns: var(--grid-first-column-size) 1fr;
+  gap: var(--grid-gap);
+}

@@ -1,7 +1,41 @@
 @charset "utf-8";
+@use "./base/functions" as *;
+@use "./base/mixins" as *;
 
 // Variables
 :root {
   // Fonts
   --font: "Rubik";
+
+  // Sizes, gaps, margins, paddings, borders, transforms
+  --outer-block-margin-start: #{px2rem(16)};
+  --outer-block-margin-end: #{px2rem(32)};
+  --outer-inline-margin: #{px2rem(24)};
+  --outer-inline-size: calc(1157 / 1440 * 100vi);
+  --outer-start-block-margin-start: #{px2rem(26)};
+  --grid-first-column-size: calc(465 / 1440 * 100vi);
+  --grid-gap: #{px2rem(128)};
+  --header-block-margin-end: #{px2rem(48)};
+  --header-start-block-margin-end: #{px2rem(40)};
+  --header-start-block-inset-start: #{px2rem(-127)};
+  --header-start-inline-inset-end: 0;
+  --header-start-gap: #{px2rem(16)};
+  --mode-choice-start-block-margin-end: #{px2rem(42)};
+  @include css-media-queries($from-breakpoint: bigger-icons) {
+    --outer-block-margin-start: #{px2rem(40)};
+    --outer-block-margin-end: #{px2rem(52)};
+    --outer-inline-margin: #{px2rem(64)};
+    --outer-start-block-margin-start: #{px2rem(54)};
+    --header-block-margin-end: #{px2rem(49)};
+    --header-start-block-margin-end: #{px2rem(64)};
+    --mode-choice-start-block-margin-end: #{px2rem(31)};
+  }
+  @include css-media-queries($from-breakpoint: multicol-layout) {
+    --outer-block-margin-start: #{px2rem(83)};
+    --outer-block-margin-end: #{px2rem(148)};
+    --outer-inline-margin: auto;
+    --outer-start-block-margin-start: #{px2rem(224)};
+    --header-block-margin-end: #{px2rem(85)};
+    --header-start-gap: #{px2rem(48)};
+  }
 }

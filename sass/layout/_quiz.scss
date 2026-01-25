@@ -1,0 +1,10 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+@use "./mixins" as layout;
+
+/** @section Quiz layout */
+#question, #score {
+  @include css-media-queries($from-breakpoint: multicol-layout) {
+    @include layout.common-grid;
+  }
+}

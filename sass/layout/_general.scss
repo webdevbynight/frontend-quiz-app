@@ -1,0 +1,18 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+@use "./mixins" as layout;
+
+/** @section General layout */
+body {
+  margin: var(--outer-block-margin-start) var(--outer-inline-margin) var(--outer-block-margin-end);
+  &[data-context="start"] {
+    margin-block-start: var(--outer-start-block-margin-start);
+  }
+  @include css-media-queries($from-breakpoint: multicol-layout) {
+    inline-size: var(--outer-inline-size);
+    &[data-context="start"] {
+      @include layout.common-grid;
+      position: relative;
+    }
+  }
+}
