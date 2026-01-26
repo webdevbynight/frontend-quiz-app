@@ -13,7 +13,7 @@
     "validate-html": "node tools/w3c-html-validator.js"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.12",
+    "@biomejs/biome": "2.3.13",
     "browser-sync": "3.0.4",
     "typescript": "5.9.3",
     "w3c-html-validator": "2.2.0"
