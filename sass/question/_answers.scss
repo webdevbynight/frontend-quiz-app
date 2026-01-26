@@ -17,7 +17,7 @@
       content: counter(answer-rank, upper-alpha);
     }
     &.proposed-answer,
-    &:hover,
+    &:not(:has(input:disabled)):hover,
     &:has(input[type="radio"]:focus, input[type="radio"]:checked) {
       outline: var(--answer-outline-width) solid;
       outline-offset: var(--answer-outline-offset);
@@ -25,11 +25,16 @@
         color: var(--primary-dark);
       }
     }
-    &:hover,
+    &:not(:has(input:disabled)):hover,
     &:has(input[type="radio"]:focus, input[type="radio"]:checked) {
       outline-color: var(--subject-theme-colour);
       &::before {
         background: var(--subject-theme-colour);
+      }
+    }
+    &:not(:has(input:disabled)) {
+      label {
+        cursor: pointer;
       }
     }
     &.correct-answer, &.incorrect-answer {
@@ -66,7 +71,6 @@
   }
   label {
     flex: 1;
-    cursor: pointer;
   }
   @include css-media-queries($from-breakpoint: bigger-icons) {
     li {
