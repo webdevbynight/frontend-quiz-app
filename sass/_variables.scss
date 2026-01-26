@@ -14,6 +14,10 @@
   --secondary-dark: #abc1e1;
   --primary-background-light: #f4f6fa;
   --primary-background-dark: #313e51;
+  --secondary-background-light: white;
+  --secondary-background-dark: #3b4d66;
+  --shadow-light: rgb(143 160 194 / 0.14);
+  --shadow-dark: rgb(49 62 82 / 0.14);
 
   // Sizes, gaps, margins, paddings, borders, transforms
   --outer-block-margin-start: #{px2rem(16)};
@@ -51,6 +55,13 @@
   --header-start-title-internal-margin: #{px2rem(8)};
   --header-start-text-size: #{px2rem(14)};
   --subject-picture-small-size: 40px;
+  --items-text-size: #{px2rem(18)};
+  --items-gap: #{px2rem(16)};
+  --items-internal-gap: #{px2rem(16)};
+  --items-padding: #{px2rem(16)};
+  --items-border-radius: #{px2rem(12)};
+  --items-box-shadow: 0 #{px2rem(16)} #{px2rem(40)} light-dark(var(--shadow-light), var(--shadow-dark));
+  --answer-rank-size: #{px2rem(40)};
   @include css-media-queries($from-breakpoint: bigger-icons) {
     --outer-block-margin-start: #{px2rem(40)};
     --outer-block-margin-end: #{px2rem(52)};
@@ -67,6 +78,11 @@
     --header-title-internal-margin: #{px2rem(24)};
     --header-start-title-size: #{px2rem(64)};
     --header-start-text-size: #{px2rem(20)};
+    --items-text-size: #{px2rem(28)};
+    --items-gap: #{px2rem(24)};
+    --items-internal-gap: #{px2rem(32)};
+    --items-border-radius: #{px2rem(24)};
+    --answer-rank-size: #{px2rem(56)};
   }
   @include css-media-queries($from-breakpoint: multicol-layout) {
     --outer-block-margin-start: #{px2rem(83)};
@@ -77,5 +93,7 @@
     --outer-background-1-inline-inset: -539px;
     --header-block-margin-end: #{px2rem(85)};
     --header-start-gap: #{px2rem(48)};
+    --items-gap: #{px2rem(16)};
+    --items-padding: #{px2rem(24)};
   }
 }
