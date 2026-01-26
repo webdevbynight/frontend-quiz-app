@@ -1,0 +1,51 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+
+/** @section Question */
+#question {
+  form, form p {
+    display: flex;
+    flex-direction: column;
+  }
+  form {
+    gap: var(--question-gap);
+  }
+  input[type="submit"] {
+    font-size: var(--question-button-text-size);
+    line-height: 1;
+    font-weight: 500;
+    color: var(--primary-dark);
+    background: var(--subject-theme-colour);
+    padding: var(--question-button-padding);
+    border: none;
+    border-radius: var(--question-button-border-radius);
+    &.unanswered {
+      background: linear-gradient(rgb(255 255 255 / .5)), var(--subject-theme-colour);
+    }
+  }
+  .error-message {
+    font-size: var(--question-error-message-text-size);
+    line-height: var(--question-error-message-text-line-height);
+    color: light-dark(var(--primary-incorrect), var(--primary-dark));
+    display: flex;
+    flex-direction: initial;
+    justify-content: center;
+    align-items: center;
+    gap: var(--question-error-message-gap);
+    order: 1;
+    &::before {
+      background: url("images/answer-result.svg") no-repeat center -32px;
+      display: block;
+      width: var(--answer-result-size);
+      aspect-ratio: 1;
+      content: "";
+    }
+  }
+  @include css-media-queries($from-breakpoint: bigger-icons) {
+    .error-message {
+      &::before {
+        background-position-y: -104px;
+      }
+    }
+  }
+}

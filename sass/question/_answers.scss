@@ -1,0 +1,85 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+
+/** @section Answers */
+.answers {
+  counter-reset: answer-rank;
+  li {
+    counter-increment: answer-rank;
+    &::before {
+      color: var(--secondary-light);
+      background: var(--primary-background-light);
+      display: inline-grid;
+      place-items: center;
+      inline-size: var(--answer-rank-size);
+      min-block-size: var(--answer-rank-size);
+      border-radius: var(--answer-border-radius);
+      content: counter(answer-rank, upper-alpha);
+    }
+    &.proposed-answer,
+    &:hover,
+    &:has(input[type="radio"]:focus, input[type="radio"]:checked) {
+      outline: var(--answer-outline-width) solid;
+      outline-offset: var(--answer-outline-offset);
+      &::before {
+        color: var(--primary-dark);
+      }
+    }
+    &:hover,
+    &:has(input[type="radio"]:focus, input[type="radio"]:checked) {
+      outline-color: var(--subject-theme-colour);
+      &::before {
+        background: var(--subject-theme-colour);
+      }
+    }
+    &.correct-answer, &.incorrect-answer {
+      &::after {
+        background: url("images/answer-result.svg") no-repeat;
+        display: block;
+        width: var(--answer-result-size);
+        aspect-ratio: 1;
+        content: "";
+      }
+    }
+    &.incorrect-answer {
+      &::after {
+        background-position-y: -32px;
+      }
+    }
+    &.proposed-answer {
+      &.correct-answer {
+        outline-color: var(--primary-correct);
+        &::before {
+          background: var(--primary-correct);
+        }
+      }
+      &.incorrect-answer {
+        outline-color: var(--primary-incorrect);
+        &::before {
+          background: var(--primary-incorrect);
+        }
+      }
+    }
+  }
+  input[type="radio"] {
+    @include css-visually-hidden;
+  }
+  label {
+    flex: 1;
+    cursor: pointer;
+  }
+  @include css-media-queries($from-breakpoint: bigger-icons) {
+    li {
+      &.correct-answer {
+        &::after {
+          background-position-y: -64px;
+        }
+      }
+      &.incorrect-answer {
+        &::after {
+          background-position-y: -104px;
+        }
+      }
+    }
+  }
+}

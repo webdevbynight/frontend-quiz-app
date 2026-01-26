@@ -10,7 +10,7 @@
   // Colours
   --primary-light: #313e51;
   --primary-dark: white;
-  --secondary-light: #62c7f;
+  --secondary-light: #626c7f;
   --secondary-dark: #abc1e1;
   --primary-background-light: #f4f6fa;
   --primary-background-dark: #313e51;
@@ -18,6 +18,13 @@
   --secondary-background-dark: #3b4d66;
   --shadow-light: rgb(143 160 194 / 0.14);
   --shadow-dark: rgb(49 62 82 / 0.14);
+  --primary-correct: #2fd887;
+  --primary-incorrect: #ee5454;
+  @property --subject-theme-colour {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #626c7f;
+  }
 
   // Sizes, gaps, margins, paddings, borders, transforms
   --outer-block-margin-start: #{px2rem(16)};
@@ -61,7 +68,18 @@
   --items-padding: #{px2rem(16)};
   --items-border-radius: #{px2rem(12)};
   --items-box-shadow: 0 #{px2rem(16)} #{px2rem(40)} light-dark(var(--shadow-light), var(--shadow-dark));
+  --question-gap: #{px2rem(16)};
+  --question-button-text-size: #{px2rem(18)};
+  --question-button-padding: #{px2rem(16)};
+  --question-button-border-radius: #{px2rem(16)};
+  --question-error-message-gap: #{px2rem(8)};
+  --question-error-message-text-size: #{px2rem(18)};
+  --question-error-message-text-line-height: 1;
   --answer-rank-size: #{px2rem(40)};
+  --answer-border-radius: #{px2rem(6)};
+  --answer-outline-width: #{px2rem(3)};
+  --answer-outline-offset: #{px2rem(-3)};
+  --answer-result-size: 32px;
   @include css-media-queries($from-breakpoint: bigger-icons) {
     --outer-block-margin-start: #{px2rem(40)};
     --outer-block-margin-end: #{px2rem(52)};
@@ -82,7 +100,15 @@
     --items-gap: #{px2rem(24)};
     --items-internal-gap: #{px2rem(32)};
     --items-border-radius: #{px2rem(24)};
+    --question-gap: #{px2rem(32)};
+    --question-button-text-size: #{px2rem(28)};
+    --question-button-padding: #{px2rem(32)};
+    --question-button-border-radius: #{px2rem(24)};
+    --question-error-message-text-size: #{px2rem(24)};
+    --question-error-message-text-line-height: 1.5;
     --answer-rank-size: #{px2rem(56)};
+    --answer-border-radius: #{px2rem(12)};
+    --answer-result-size: 40px;
   }
   @include css-media-queries($from-breakpoint: multicol-layout) {
     --outer-block-margin-start: #{px2rem(83)};
@@ -95,5 +121,6 @@
     --header-start-gap: #{px2rem(48)};
     --items-gap: #{px2rem(16)};
     --items-padding: #{px2rem(24)};
+    --answer-border-radius: #{px2rem(8)};
   }
 }
