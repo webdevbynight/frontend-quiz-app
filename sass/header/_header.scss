@@ -1,10 +1,19 @@
 @charset "utf-8";
 @use "../base/mixins" as *;
+@use "../common/mixins" as common;
 
 /** @section Header */
 #header {
   display: flex;
   margin-block-end: var(--header-block-margin-end);
+  h1 {
+    font-size: var(--header-title-size);
+    line-height: 1;
+    img {
+      margin-inline-end: var(--header-title-internal-margin);
+    }
+    @include common.small-subject-picture;
+  }
   :not([data-context="start"]) > & {
     justify-content: space-between;
   }
@@ -12,6 +21,23 @@
     flex-direction: column;
     gap: var(--header-start-gap);
     margin-block-end: var(--header-start-block-margin-end);
+    h1 {
+      font-size: var(--header-start-title-size);
+      font-weight: 300;
+      .welcome, .app-name {
+        white-space: nowrap;
+      }
+      .app-name {
+        font-weight: 500;
+        display: block;
+        margin-block-start: var(--header-start-title-internal-margin);
+      }
+    }
+    > p {
+      font-size: var(--header-start-text-size);
+      line-height: 1.5;
+      font-style: italic;
+    }
     form {
       order: -1;
       margin-block-end: var(--mode-choice-start-block-margin-end);

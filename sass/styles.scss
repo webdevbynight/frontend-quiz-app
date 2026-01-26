@@ -12,7 +12,7 @@
 @use "./base/mixins" with (
   $media-queries-breakpoints: (
     bigger-icons: 500,
-    multicol-layout: 1024
+    multicol-layout: 1080
   )
 );
 @use "./variables";

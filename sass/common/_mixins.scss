@@ -1,0 +1,12 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+
+// Mixins for common
+@mixin small-subject-picture {
+  @include css-media-queries($below-breakpoint: bigger-icons) {
+    img {
+      width: 40px;
+      aspect-ratio: 1;
+    }
+  }
+}

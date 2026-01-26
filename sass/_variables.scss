@@ -45,6 +45,12 @@
   --mode-choice-button-inside-inline-inset: #{px2rem(4)};
   --mode-choice-button-inside-translate-y: -50%;
   --mode-choice-weather-icon-size: 16px;
+  --header-title-size: #{px2rem(18)};
+  --header-title-internal-margin: #{px2rem(16)};
+  --header-start-title-size: #{px2rem(40)};
+  --header-start-title-internal-margin: #{px2rem(8)};
+  --header-start-text-size: #{px2rem(14)};
+  --subject-picture-small-size: 40px;
   @include css-media-queries($from-breakpoint: bigger-icons) {
     --outer-block-margin-start: #{px2rem(40)};
     --outer-block-margin-end: #{px2rem(52)};
@@ -57,6 +63,10 @@
     --mode-choice-start-block-margin-end: #{px2rem(31)};
     --mode-choice-gap: #{px2rem(16)};
     --mode-choice-weather-icon-size: 24px;
+    --header-title-size: #{px2rem(28)};
+    --header-title-internal-margin: #{px2rem(24)};
+    --header-start-title-size: #{px2rem(64)};
+    --header-start-text-size: #{px2rem(20)};
   }
   @include css-media-queries($from-breakpoint: multicol-layout) {
     --outer-block-margin-start: #{px2rem(83)};
