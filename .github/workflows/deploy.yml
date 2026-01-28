@@ -27,8 +27,6 @@ jobs:
         uses: ./.github/actions/pnpm-node
       - name: Install dependencies
         run: pnpm install
-      - name: Build the package
-        run: pnpm build
       - name: Run Vitest
         run: pnpm test
   deploy:
