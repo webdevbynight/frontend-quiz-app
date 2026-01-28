@@ -1,0 +1,14 @@
+@charset "utf-8";
+@use "../base/functions" as *;
+
+// Question mixins
+@mixin progress-border-radius {
+  border-radius: #{px2rem(8)};
+}
+@mixin progress-bar-background {
+  background: light-dark(var(--secondary-background-light), var(--secondary-background-dark));
+}
+@mixin progress-value {
+  background: var(--subject-theme-colour);
+  border-radius: #{px2rem(4)};
+}

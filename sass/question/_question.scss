@@ -1,8 +1,46 @@
 @charset "utf-8";
 @use "../base/mixins" as *;
+@use "./mixins" as question;
 
 /** @section Question */
 #question {
+  header {
+    margin-block-end: var(--question-header-block-margin);
+    h2 {
+      font-size: var(--question-title-size);
+      line-height: 1.2;
+    }
+    p {
+      margin-block-start: var(--question-progress-block-margin);
+    }
+    progress {
+      @include question.progress-bar-background;
+      box-sizing: border-box;
+      inline-size: 100%;
+      block-size: var(--question-progress-block-size);
+      padding: var(--question-progress-padding);
+      appearance: none;
+      border: none;
+      @include question.progress-border-radius;
+      &::-moz-progress-bar {
+        @include question.progress-value;
+      }
+      &::-webkit-progress-bar {
+        @include question.progress-bar-background;
+        @include question.progress-border-radius;
+      }
+      &::-webkit-progress-value {
+        @include question.progress-value;
+      }
+    }
+    .question-number {
+      font-size: var(--question-number-text-size);
+      line-height: 1.5;
+      font-style: italic;
+      display: block;
+      margin-block-end: var(--question-title-inside-margin);
+    }
+  }
   form, form p {
     display: flex;
     flex-direction: column;
@@ -45,6 +83,16 @@
     .error-message {
       &::before {
         background-position-y: -104px;
+      }
+    }
+  }
+  @include css-media-queries($from-breakpoint: multicol-layout) {
+    header {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        margin-block-start: initial;
       }
     }
   }

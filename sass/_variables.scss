@@ -69,6 +69,13 @@
   --items-border-radius: #{px2rem(12)};
   --items-box-shadow: 0 #{px2rem(16)} #{px2rem(40)} light-dark(var(--shadow-light), var(--shadow-dark));
   --question-gap: #{px2rem(16)};
+  --question-header-block-margin: #{px2rem(40)};
+  --question-title-size: #{px2rem(20)};
+  --question-title-inside-margin: #{px2rem(16)};
+  --question-number-text-size: #{px2rem(14)};
+  --question-progress-block-size: #{px2rem(16)};
+  --question-progress-block-margin: #{px2rem(24)};
+  --question-progress-padding: #{px2rem(4)};
   --question-button-text-size: #{px2rem(18)};
   --question-button-padding: #{px2rem(16)};
   --question-button-border-radius: #{px2rem(16)};
@@ -101,6 +108,10 @@
     --items-internal-gap: #{px2rem(32)};
     --items-border-radius: #{px2rem(24)};
     --question-gap: #{px2rem(32)};
+    --question-title-size: #{px2rem(36)};
+    --question-title-inside-margin: #{px2rem(24)};
+    --question-number-text-size: #{px2rem(20)};
+    --question-progress-block-margin: #{px2rem(40)};
     --question-button-text-size: #{px2rem(28)};
     --question-button-padding: #{px2rem(32)};
     --question-button-border-radius: #{px2rem(24)};
@@ -121,6 +132,7 @@
     --header-start-gap: #{px2rem(48)};
     --items-gap: #{px2rem(16)};
     --items-padding: #{px2rem(24)};
+    --question-header-block-margin: #{px2rem(119)};
     --answer-border-radius: #{px2rem(8)};
   }
 }
