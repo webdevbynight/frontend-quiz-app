@@ -18,6 +18,9 @@
       font-weight: 500;
     }
   }
+  p:first-child, .button {
+    box-shadow: var(--items-box-shadow);
+  }
   p {
     line-height: 1;
     font-weight: 500;

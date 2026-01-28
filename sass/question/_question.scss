@@ -57,6 +57,7 @@
     padding: var(--question-button-padding);
     border: none;
     border-radius: var(--question-button-border-radius);
+    box-shadow: var(--items-box-shadow);
     &.unanswered {
       background: linear-gradient(rgb(255 255 255 / .5)), var(--subject-theme-colour);
     }
