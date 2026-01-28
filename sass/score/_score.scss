@@ -1,0 +1,92 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+
+/** @section Score */
+#score {
+  header {
+    h2, p {
+      font-size: var(--score-title-size);
+      line-height: 1;
+    }
+
+    h2 {
+      font-weight: 300;
+      margin-block-end: var(--score-header-inner-margin);
+    }
+
+    p {
+      font-weight: 500;
+    }
+  }
+  p {
+    line-height: 1;
+    font-weight: 500;
+    &:first-child {
+      font-size: var(--score-result-text-size);
+      color: light-dark(var(--secondary-light), var(--secondary-dark));
+      background: light-dark(var(--secondary-background-light), var(--secondary-background-dark));
+      text-align: center;
+      padding: var(--score-result-padding);
+      margin-block-end: var(--score-result-block-margin);
+      border-radius: var(--score-result-border-radius);
+    }
+  }
+  .subject, .score-note {
+    color: light-dark(var(--primary-light), var(--primary-dark));
+    display: block;
+  }
+  .subject {
+    font-size: var(--score-result-subject-text-size);
+    margin-block-end: var(--score-result-subject-block-margin);
+    img {
+      margin-inline-end: var(--score-result-subject-gap);
+    }
+  }
+  .score-note {
+    font-size: var(--score-result-note-text-size);
+    margin-block-end: var(--score-result-note-block-margin);
+  }
+  .button {
+    font-size: var(--score-button-text-size);
+    color: var(--primary-dark);
+    background: var(--subject-theme-colour);
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    padding: var(--score-button-padding);
+    border-radius: var(--score-button-border-radius);
+  }
+  @include css-media-queries($below-breakpoint: bigger-icons) {
+    .subject {
+      img {
+        width: 40px;
+        aspect-ratio: 1;
+      }
+    }
+  }
+  @include css-media-queries($from-breakpoint: bigger-icons) {
+    p {
+      &:first-child {
+        line-height: 1.5;
+      }
+    }
+    .subject, .score-note {
+      line-height: 1;
+    }
+  }
+  @include css-media-queries($below-breakpoint: multicol-layout) {
+    header {
+      margin-block-end: var(--score-header-block-margin);
+    }
+  }
+  @include css-media-queries($from-breakpoint: multicol-layout) {
+    p {
+      &:first-child {
+        font-weight: normal;
+      }
+    }
+    .subject, .score-note {
+      font-weight: 500;
+    }
+  }
+}
