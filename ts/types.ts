@@ -13,17 +13,18 @@ export type QuizData = {
   }[];
 };
 export type ModeChoice = "light" | "dark";
+export type QuizStorageData = {
+  title: string;
+  subject: string;
+  isCompleted: boolean;
+  questions: {
+    id: number;
+    isAnswered: boolean;
+  }[];
+};
 export type StorageData = {
   modeChoice: ModeChoice;
-  quiz?: {
-    title: string;
-    subject: string;
-    isCompleted: boolean;
-    questions: {
-      id: number;
-      isAnswered: boolean;
-    }[];
-  };
+  quiz?: QuizStorageData;
 };
 type DataStartContext = {
   context: "start";

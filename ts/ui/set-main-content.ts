@@ -1,5 +1,6 @@
 import type { DataContext, QuizData } from "../types.js";
 
+import { storeSelectedSubject } from "../utils/store-selected-subject.js";
 import { stringToKebabCase } from "../utils/string-to-kebab-case.js";
 
 /**
@@ -56,12 +57,21 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
         const ul = document.createElement("ul");
         ul.className = "subjects";
         for (const quiz of quizzes) {
-          const { title, icon } = quiz;
+          const { title, icon, questions } = quiz;
+          const subject = stringToKebabCase(title);
           const li = document.createElement("li");
           const a = document.createElement("a");
+          a.addEventListener("click", () => {
+            storeSelectedSubject({
+              title,
+              subject,
+              isCompleted: false,
+              questions: questions.map((_, index) => ({ id: index + 1, isAnswered: false }))
+            });
+          });
           a.href = "./";
           a.dataset.title = title;
-          a.dataset.subject = stringToKebabCase(title);
+          a.dataset.subject = subject;
           a.innerHTML = `<img src="${icon}" alt="" width="56" height="56"> ${title}`;
           li.appendChild(a);
           ul.appendChild(li);
