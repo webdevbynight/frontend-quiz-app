@@ -1,4 +1,4 @@
-import type { ModeChoice, Storage } from "../types.js";
+import type { ModeChoice, StorageData } from "../types.js";
 
 import { getStorage } from "../utils/get-storage.js";
 
@@ -9,7 +9,7 @@ import { getStorage } from "../utils/get-storage.js";
 export const getModeChoice = (): ModeChoice => {
   const storage = getStorage();
   if (storage) {
-    const storageData: Storage = JSON.parse(storage);
+    const storageData: StorageData = JSON.parse(storage);
     const { modeChoice } = storageData;
     return modeChoice;
   }
