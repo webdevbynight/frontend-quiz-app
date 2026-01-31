@@ -72,7 +72,7 @@
     align-items: center;
     gap: var(--question-error-message-gap);
     order: 1;
-    &::before {
+    &:not(:empty)::before {
       background: url("images/answer-result.svg") no-repeat center -32px;
       display: block;
       width: var(--answer-result-size);
@@ -82,7 +82,7 @@
   }
   @include css-media-queries($from-breakpoint: bigger-icons) {
     .error-message {
-      &::before {
+      &:not(:empty)::before {
         background-position-y: -104px;
       }
     }
