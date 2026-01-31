@@ -12,12 +12,13 @@ export const getDataContext = (): DataContext => {
     const storageData: StorageData = JSON.parse(storage);
     const { quiz } = storageData;
     if (quiz) {
-      const { title, subject, isCompleted, questions } = quiz;
-      if (isCompleted) return { context: "score", title, subject };
+      const { id, title, themeColour, isCompleted, questions } = quiz;
+      if (isCompleted) return { context: "score", subject: id, title, themeColour };
       return {
         context: "question",
+        subject: id,
         title,
-        subject,
+        themeColour,
         question: questions.find(question => !question.isAnswered)?.id ?? 0,
         questions: questions.length
       };

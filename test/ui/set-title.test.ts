@@ -16,6 +16,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 1,
       questions: 10
     },
@@ -26,6 +27,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 2,
       questions: 10
     },
@@ -36,6 +38,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 3,
       questions: 10
     },
@@ -46,6 +49,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 4,
       questions: 10
     },
@@ -56,6 +60,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 5,
       questions: 10
     },
@@ -66,6 +71,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 6,
       questions: 10
     },
@@ -76,6 +82,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 7,
       questions: 10
     },
@@ -86,6 +93,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 8,
       questions: 10
     },
@@ -96,6 +104,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 9,
       questions: 10
     },
@@ -106,6 +115,7 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
       context: "question",
       title: "Fake subject",
       subject: "fake-subject",
+      themeColour: "#abcdef",
       question: 10,
       questions: 10
     },
@@ -115,7 +125,8 @@ const mockedTitles: { dataContext: DataContext; expected: string }[] = [
     dataContext: {
       context: "score",
       title: "Fake subject",
-      subject: "fake-subject"
+      subject: "fake-subject",
+      themeColour: "#abcdef"
     },
     expected: "Quiz completed — Fake subject — Frontend Quiz"
   }

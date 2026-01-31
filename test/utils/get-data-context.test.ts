@@ -14,12 +14,12 @@ const mockedContexts: { storage: string | null; expected: DataContext }[] = [
     expected: { context: "start" }
   },
   {
-    storage: '{"modeChoice":"dark","quiz":{"title":"Fake subject","subject":"fake-subject","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}',
-    expected: { context: "question", title: "Fake subject", subject: "fake-subject", question: 1, questions: 1 }
+    storage: '{"modeChoice":"dark","quiz":{"id":"fake-subject","title":"Fake subject","themeColour":"#abcdef","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}',
+    expected: { context: "question", subject: "fake-subject", title: "Fake subject", themeColour: "#abcdef", question: 1, questions: 1 }
   },
   {
-    storage: '{"modeChoice":"dark","quiz":{"title":"Fake subject","subject":"fake-subject","isCompleted":true,"questions":[{"id":1,"isAnswered":true}]}}',
-    expected: { context: "score", title: "Fake subject", subject: "fake-subject" }
+    storage: '{"modeChoice":"dark","quiz":{"id":"fake-subject","title":"Fake subject","themeColour":"#abcdef","isCompleted":true,"questions":[{"id":1,"isAnswered":true}]}}',
+    expected: { context: "score", subject: "fake-subject", title: "Fake subject", themeColour: "#abcdef" }
   }
 ];
 

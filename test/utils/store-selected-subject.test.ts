@@ -7,8 +7,9 @@ import { storeSelectedSubject } from "../../ts/utils/store-selected-subject.js";
 import { STORAGE_ITEM_NAME } from "../../ts/utils/constants.js";
 
 const mockedSubjectData: QuizStorageData = {
+  id: "sample-quiz",
   title: "Sample Quiz",
-  subject: "sample-quiz",
+  themeColour: "#abcdef",
   isCompleted: false,
   questions: [{ id: 1, isAnswered: false }]
 };
@@ -22,10 +23,10 @@ it("should not store the selected subject if the storage is not found", () => {
 it("should store the selected subject if the storage is found", () => {
   vi.spyOn(Storage.prototype, "getItem").mockReturnValue('{"modeChoice":"dark"}');
   storeSelectedSubject(mockedSubjectData);
-  expect(spyStorage).toHaveBeenCalledWith(STORAGE_ITEM_NAME, '{"modeChoice":"dark","quiz":{"title":"Sample Quiz","subject":"sample-quiz","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}');
+  expect(spyStorage).toHaveBeenCalledWith(STORAGE_ITEM_NAME, '{"modeChoice":"dark","quiz":{"id":"sample-quiz","title":"Sample Quiz","themeColour":"#abcdef","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}');
 });
 it("should store the selected subject if the storage is found and has an existing subject", () => {
-  vi.spyOn(Storage.prototype, "getItem").mockReturnValue('{"modeChoice":"dark","quiz":{"title":"Fake Quiz","subject":"fake-quiz","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}');
+  vi.spyOn(Storage.prototype, "getItem").mockReturnValue('{"modeChoice":"dark","quiz":{"title":"Fake Quiz","subject":"fake-quiz","themeColour":"#000000","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}');
   storeSelectedSubject(mockedSubjectData);
-  expect(spyStorage).toHaveBeenCalledWith(STORAGE_ITEM_NAME, '{"modeChoice":"dark","quiz":{"title":"Sample Quiz","subject":"sample-quiz","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}');
+  expect(spyStorage).toHaveBeenCalledWith(STORAGE_ITEM_NAME, '{"modeChoice":"dark","quiz":{"id":"sample-quiz","title":"Sample Quiz","themeColour":"#abcdef","isCompleted":false,"questions":[{"id":1,"isAnswered":false}]}}');
 });

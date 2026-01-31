@@ -1,21 +1,31 @@
-const hexadecimalDigit = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"] as const;
-type HexadecimalDigit = (typeof hexadecimalDigit)[number];
+type ThemeColour = `#${string}`;
+export type QuizDataQuestion = {
+  id: number;
+  title: string;
+  options: string[];
+  answer: string;
+};
 export type QuizData = {
   quizzes: {
+    id: string;
     title: string;
     icon: string;
-    "theme-colour": `#${HexadecimalDigit}`;
-    questions: {
-      question: string;
-      options: string[];
-      answer: string;
-    }[];
+    themeColour: ThemeColour;
+    questions: QuizDataQuestion[];
   }[];
+};
+export type QuizSubject = {
+  id: string;
+  title: string;
+  icon: string;
+  themeColour: ThemeColour;
+  questions: number;
 };
 export type ModeChoice = "light" | "dark";
 export type QuizStorageData = {
+  id: string;
   title: string;
-  subject: string;
+  themeColour: ThemeColour;
   isCompleted: boolean;
   questions: {
     id: number;
@@ -31,14 +41,16 @@ type DataStartContext = {
 };
 type DataQuestionContext = {
   context: "question";
-  title: string;
   subject: string;
+  title: string;
+  themeColour: ThemeColour;
   question: number;
   questions: number;
 };
 type DataScoreContext = {
   context: "score";
-  title: string;
   subject: string;
+  title: string;
+  themeColour: ThemeColour;
 };
 export type DataContext = DataStartContext | DataQuestionContext | DataScoreContext;

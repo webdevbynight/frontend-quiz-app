@@ -1,5 +1,6 @@
-import type { DataContext, QuizData } from "../types.js";
+import type { DataContext } from "../types.js";
 
+import { getAllSubjects } from "../data/get-all-subjects.js";
 import { storeSelectedSubject } from "../utils/store-selected-subject.js";
 import { stringToKebabCase } from "../utils/string-to-kebab-case.js";
 
@@ -25,6 +26,41 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
     </main>
     */
   } else if (context === "question") {
+    const { subject, question, questions } = dataContext;
+    main.id = "question";
+    const header = document.createElement("header");
+    const h2 = document.createElement("h2");
+    h2.innerHTML = `<span class="question-number">Question ${question} of ${questions}</span> Which of these colour contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?`;
+    const headerP = document.createElement("p");
+    const progress = document.createElement("progress");
+    progress.setAttribute("aria-label", `Question progress: ${question} of ${questions}`);
+    progress.value = question;
+    progress.max = questions;
+    headerP.appendChild(progress);
+    header.appendChild(h2);
+    header.appendChild(headerP);
+    const form = document.createElement("form");
+    form.method = "post";
+    form.action = "./";
+    const formP = document.createElement("p");
+    const formInputHiddenContext = document.createElement("input");
+    formInputHiddenContext.name = "question-context";
+    formInputHiddenContext.type = "hidden";
+    formInputHiddenContext.value = `${subject}-question-${question}`;
+    const formInputHiddenAnswered = document.createElement("input");
+    formInputHiddenAnswered.name = "question-answered";
+    formInputHiddenAnswered.type = "hidden";
+    formInputHiddenAnswered.value = "false";
+    const formInputSubmit = document.createElement("input");
+    formInputSubmit.className = "unanswered";
+    formInputSubmit.type = "submit";
+    formInputSubmit.value = "Submit Answer";
+    formP.appendChild(formInputHiddenContext);
+    formP.appendChild(formInputHiddenAnswered);
+    formP.appendChild(formInputSubmit);
+    form.appendChild(formP);
+    main.appendChild(header);
+    main.appendChild(form);
     /*
     <main id="question">
       <header>
@@ -47,39 +83,35 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
     </main>
     */
   } else {
-    const nav = document.createElement("nav");
-    const quizResource = await fetch("./data/data.json");
-    const { status, ok } = quizResource;
-    if (ok && status === 200) {
-      const quizData: QuizData = await quizResource.json();
-      const { quizzes } = quizData;
-      if (quizzes.length) {
-        const ul = document.createElement("ul");
-        ul.className = "subjects";
-        for (const quiz of quizzes) {
-          const { title, icon, questions } = quiz;
-          const subject = stringToKebabCase(title);
-          const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.addEventListener("click", () => {
-            storeSelectedSubject({
-              title,
-              subject,
-              isCompleted: false,
-              questions: questions.map((_, index) => ({ id: index + 1, isAnswered: false }))
-            });
+    const quizzes = await getAllSubjects();
+    if (quizzes.length) {
+      const nav = document.createElement("nav");
+      const ul = document.createElement("ul");
+      ul.className = "subjects";
+      for (const quiz of quizzes) {
+        const { id, title, icon, questions, themeColour } = quiz;
+        const subject = stringToKebabCase(title);
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.addEventListener("click", () => {
+          storeSelectedSubject({
+            id,
+            title,
+            themeColour,
+            isCompleted: false,
+            questions: Array.from({ length: questions }, (_, index) => ({ id: index + 1, isAnswered: false }))
           });
-          a.href = "./";
-          a.dataset.title = title;
-          a.dataset.subject = subject;
-          a.innerHTML = `<img src="${icon}" alt="" width="56" height="56"> ${title}`;
-          li.appendChild(a);
-          ul.appendChild(li);
-        }
-        nav.appendChild(ul);
+        });
+        a.href = "./";
+        a.dataset.title = title;
+        a.dataset.subject = subject;
+        a.innerHTML = `<img src="${icon}" alt="" width="56" height="56"> ${title}`;
+        li.appendChild(a);
+        ul.appendChild(li);
       }
+      nav.appendChild(ul);
+      main.appendChild(nav);
     }
-    main.appendChild(nav);
   }
   return main;
 };
