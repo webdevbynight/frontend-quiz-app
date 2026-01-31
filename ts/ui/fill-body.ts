@@ -9,6 +9,7 @@ import { setMainContent } from "./set-main-content.js";
  * @param dataContext - The current data context.
  */
 export const fillBody = async (body: HTMLElement, dataContext: DataContext): Promise<void> => {
-  body.insertAdjacentElement("afterbegin", await setMainContent(dataContext));
+  const mainElement = await setMainContent(dataContext);
+  if (mainElement) body.insertAdjacentElement("afterbegin", mainElement);
   body.insertAdjacentElement("afterbegin", setHeader(dataContext));
 };
