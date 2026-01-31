@@ -1,8 +1,12 @@
 import type { DataContext } from "../types.js";
 
 import { getAllSubjects } from "../data/get-all-subjects.js";
+import { getAnswer } from "../data/get-answer.js";
+import { getQuestion } from "../data/get-question.js";
+import { indexToLetter } from "../utils/index-to-letter.js";
 import { storeSelectedSubject } from "../utils/store-selected-subject.js";
 import { stringToKebabCase } from "../utils/string-to-kebab-case.js";
+import { updateSelectedSubject } from "../utils/update-selected-subject.js";
 
 /**
  * Sets the main content of the page.
@@ -27,10 +31,18 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
     */
   } else if (context === "question") {
     const { subject, question, questions } = dataContext;
+    const questionData = await getQuestion(subject, question);
+    const { title, options } = questionData;
     main.id = "question";
+    const whiteSpace = document.createTextNode(" ");
     const header = document.createElement("header");
     const h2 = document.createElement("h2");
-    h2.innerHTML = `<span class="question-number">Question ${question} of ${questions}</span> Which of these colour contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?`;
+    const questionNumber = document.createElement("span");
+    questionNumber.className = "question-number";
+    questionNumber.textContent = `Question ${question} of ${questions}`;
+    h2.appendChild(questionNumber);
+    h2.appendChild(whiteSpace);
+    h2.appendChild(document.createTextNode(title));
     const headerP = document.createElement("p");
     const progress = document.createElement("progress");
     progress.setAttribute("aria-label", `Question progress: ${question} of ${questions}`);
@@ -39,9 +51,82 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
     headerP.appendChild(progress);
     header.appendChild(h2);
     header.appendChild(headerP);
+    const answerName = `${subject}-question-${question}-answer`;
     const form = document.createElement("form");
     form.method = "post";
     form.action = "./";
+    form.addEventListener("input", function () {
+      const inputSubmit = this.querySelector("input[type='submit']");
+      if (inputSubmit) inputSubmit.classList.remove("unanswered");
+    });
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      const questionAnswered = formData.get("question-answered");
+      if (questionAnswered === "false") {
+        const errorMessage = this.querySelector(".error-message");
+        if (formData.has(answerName)) {
+          const answer = Number(formData.get(answerName)) ?? -1;
+          const rightAnswer = await getAnswer(subject, question);
+          const isAnswerCorrect = answer === rightAnswer;
+          const options = this.querySelectorAll(".answers li");
+          for (const option of options) {
+            const inputRadio = option.querySelector<HTMLInputElement>("input[type='radio']");
+            if (inputRadio) inputRadio.disabled = true;
+          }
+          const proposedAnswer = options[answer];
+          const correctAnswer = options[rightAnswer];
+          const resultMessage = this.querySelector(".result");
+          const inputQuestionAnswered = this.querySelector<HTMLInputElement>("input[name='question-answered']");
+          const inputQuestionCorrect = this.querySelector<HTMLInputElement>("input[name='question-correct']");
+          const inputSubmit = this.querySelector<HTMLInputElement>("input[type='submit']");
+          if (proposedAnswer && correctAnswer && resultMessage && inputQuestionAnswered && inputQuestionCorrect && inputSubmit) {
+            proposedAnswer.classList.add("proposed-answer");
+            if (isAnswerCorrect) proposedAnswer.classList.add("correct-answer");
+            else {
+              proposedAnswer.classList.add("incorrect-answer");
+              correctAnswer.classList.add("correct-answer");
+            }
+            resultMessage.textContent = isAnswerCorrect ? "Your answer is correct!" : `Your answer is incorrect! You have answered the answer ${indexToLetter(answer)}, while the correct answer is ${indexToLetter(rightAnswer)}.`;
+            inputQuestionAnswered.value = "true";
+            inputQuestionCorrect.value = String(isAnswerCorrect);
+            inputSubmit.value = "Next Question";
+          }
+          if (errorMessage) errorMessage.textContent = "";
+        } else {
+          if (errorMessage) errorMessage.textContent = "Please select an answer.";
+        }
+      } else if (questionAnswered === "true") {
+        updateSelectedSubject(subject, question, formData.get("question-correct") === "true");
+        window.location.href = "./";
+      }
+    });
+    if (options.length) {
+      const ol = document.createElement("ol");
+      ol.className = "answers";
+      options.forEach((option, index) => {
+        const li = document.createElement("li");
+        const input = document.createElement("input");
+        input.id = `${subject}-question-${question}-answer-${index + 1}`;
+        input.name = answerName;
+        input.type = "radio";
+        input.value = String(index);
+        const label = document.createElement("label");
+        label.htmlFor = input.id;
+        label.textContent = option;
+        li.appendChild(input);
+        li.appendChild(whiteSpace);
+        li.appendChild(label);
+        ol.appendChild(li);
+      });
+      form.appendChild(ol);
+    }
+    const formErrorMessage = document.createElement("p");
+    formErrorMessage.className = "error-message";
+    formErrorMessage.setAttribute("aria-live", "assertive");
+    const formResult = document.createElement("p");
+    formResult.className = "result sr-only";
+    formResult.setAttribute("aria-live", "assertive");
     const formP = document.createElement("p");
     const formInputHiddenContext = document.createElement("input");
     formInputHiddenContext.name = "question-context";
@@ -51,37 +136,23 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
     formInputHiddenAnswered.name = "question-answered";
     formInputHiddenAnswered.type = "hidden";
     formInputHiddenAnswered.value = "false";
+    const formInputHiddenCorrect = document.createElement("input");
+    formInputHiddenCorrect.name = "question-correct";
+    formInputHiddenCorrect.type = "hidden";
+    formInputHiddenCorrect.value = "false";
     const formInputSubmit = document.createElement("input");
     formInputSubmit.className = "unanswered";
     formInputSubmit.type = "submit";
     formInputSubmit.value = "Submit Answer";
     formP.appendChild(formInputHiddenContext);
     formP.appendChild(formInputHiddenAnswered);
+    formP.appendChild(formInputHiddenCorrect);
     formP.appendChild(formInputSubmit);
+    form.appendChild(formErrorMessage);
+    form.appendChild(formResult);
     form.appendChild(formP);
     main.appendChild(header);
     main.appendChild(form);
-    /*
-    <main id="question">
-      <header>
-        <h2><span class="question-number">Question 6 of 10</span> Which of these colour contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?</h2>
-        <p><progress value="6" max="10" aria-label="Question progress"></progress></p>
-      </header>
-      <form method="post">
-        <ol class="answers">
-          <li><input id="accessibility-question-6-answer-1" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-1">4.5:1</label></li>
-          <li><input id="accessibility-question-6-answer-2" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-2">3:1</label></li>
-          <li><input id="accessibility-question-6-answer-3" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-3">2.5:1</label></li>
-          <li><input id="accessibility-question-6-answer-4" name="accessibility-question-6-answer" type="radio"> <label for="accessibility-question-6-answer-4">5:1</label></li>
-        </ol>
-        <p>
-          <input name="question-context" type="hidden" value="accessibility-question-6">
-          <input name="question-answered" type="hidden" value="false">
-          <input class="unanswered" type="submit" value="Submit Answer">
-        </p>
-      </form>
-    </main>
-    */
   } else {
     const quizzes = await getAllSubjects();
     if (quizzes.length) {
@@ -99,7 +170,7 @@ export const setMainContent = async (dataContext: DataContext): Promise<HTMLElem
             title,
             themeColour,
             isCompleted: false,
-            questions: Array.from({ length: questions }, (_, index) => ({ id: index + 1, isAnswered: false }))
+            questions: Array.from({ length: questions }, (_, index) => ({ id: index + 1, isAnswered: false, isAnswerCorrect: false }))
           });
         });
         a.href = "./";

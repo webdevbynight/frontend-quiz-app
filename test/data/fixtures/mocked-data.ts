@@ -31,7 +31,7 @@ export const mockedData: QuizData["quizzes"] = [
         id: 1,
         title: "What the hell is this question?",
         options: ["Answer A", "Answer B", "Answer C", "Answer D"],
-        answer: "Answer A"
+        answer: "Answer E"
       }
     ]
   }

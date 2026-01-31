@@ -30,6 +30,7 @@ export type QuizStorageData = {
   questions: {
     id: number;
     isAnswered: boolean;
+    isAnswerCorrect: boolean;
   }[];
 };
 export type StorageData = {
