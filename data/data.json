@@ -139,7 +139,7 @@
     {
       "id": "javascript",
       "title": "JavaScript",
-      "icon": "./images/icon-js.svg",
+      "icon": "./images/icon-javascript.svg",
       "themeColour": "#306aff",
       "questions": [
         {
