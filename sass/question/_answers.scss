@@ -18,7 +18,7 @@
     }
     &.proposed-answer,
     &:not(:has(input:disabled)):hover,
-    &:has(input[type="radio"]:focus, input[type="radio"]:checked) {
+    &:not(.proposed-answer):has(input[type="radio"]:focus, input[type="radio"]:checked) {
       outline: var(--answer-outline-width) solid;
       outline-offset: var(--answer-outline-offset);
       &::before {
@@ -26,7 +26,7 @@
       }
     }
     &:not(:has(input:disabled)):hover,
-    &:has(input[type="radio"]:focus, input[type="radio"]:checked) {
+    &:not(.proposed-answer):has(input[type="radio"]:focus, input[type="radio"]:checked) {
       outline-color: var(--subject-theme-colour);
       &::before {
         background: var(--subject-theme-colour);
